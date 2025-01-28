@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Entries</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Create New Entry</h2>
+        <form method="POST" action="{{ url_for('prenotation_room') }}">
+            <p>
+                <label for="numero">Numero:</label>
+                <input type="text" id="numero" name="numero">
+            </p>
+            <p>
+                <label for="arrivo">arrivo:</label>
+                <input type="text" id="arrivo" name="arrivo">
+            </p>
+            <p>
+                <label for="partenza">partenza:</label>
+                <input type="text" id="partenza" name="partenza">
+            </p>
+            <p>
+                <label for="cliente">cliente:</label>
+                <input type="text" id="cliente" name="cliente">
+            </p>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

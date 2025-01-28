@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS ciaramidaro_hotel;
+USE ciaramidaro_hotel;
+
 CREATE TABLE CAMERA (
     numero INT PRIMARY KEY,
     tipo VARCHAR(50),
