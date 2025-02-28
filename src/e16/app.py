@@ -60,8 +60,21 @@ def giocatori():
     cursor.close()
     return render_template("giocatori.html", entries=entries)
 
+
+
+@app.route("/allenatori")
+def allenatori():
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("""
+        SELECT * FROM ALLENATORE
+    """)
+    entries = cursor.fetchall()
+    cursor.close()
+    return render_template("giocatori.html", entries=entries)
+
 if __name__ == "__main__":
     # check if the file database exists
     if not os.path.exists(DATABASE):
         init_db()
-    app.run(debug=True, port=50849)
+    app.run(debug=True, port=50840)

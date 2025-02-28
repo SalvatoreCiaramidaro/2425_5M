@@ -1,3 +1,6 @@
+CREATE DATABASE calcio;
+USE calcio;
+
 -- Create tables
 CREATE TABLE ALLENATORE (
     id INTEGER PRIMARY KEY,
