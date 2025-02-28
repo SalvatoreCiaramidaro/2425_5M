@@ -8,28 +8,54 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="mb-4">Allenatori</h1>
-
+        <h1 class="mb-4">Giocatori di Calcio</h1>
+        
+        <div class="table-responsive mb-4">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Cognome</th>
+                        <th>Ruolo</th>
+                        <th>Allenatore</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for ALLENATORE in entries %}
+                    {% for giocatore in entries %}
                     <tr>
-                        <td>{{ ALLENATORE['id'] }}</td>
-                        <td>{{ ALLENATORE['nome'] }}</td>
-                        <td>{{ ALLENATORE['cognome'] }}</td>
+                        <td>{{ giocatore['id'] }}</td>
+                        <td>{{ giocatore['nome'] }}</td>
+                        <td>{{ giocatore['cognome'] }}</td>
+                        <td>{{ giocatore['ruolo'] }}</td>
+                        <td>{{ giocatore['allenatore_nome'] }} {{ giocatore['allenatore_cognome'] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 g-4">
+            {% for giocatore in entries %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ giocatore['nome'] }} {{ giocatore['cognome'] }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ giocatore['ruolo'] }}</h6>
+                        <p class="card-text">
+                            Allenato da: {{ giocatore['allenatore_nome'] }} {{ giocatore['allenatore_cognome'] }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+
+    <button type="button" class="btn btn-primary" onclick="window.location.href = '/allenatori';">Vedi Allenatori</button>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" onclick="window.location.href = '/partite';">Vedi Partite</button>
 
 
 

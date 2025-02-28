@@ -71,7 +71,41 @@ def allenatori():
     """)
     entries = cursor.fetchall()
     cursor.close()
-    return render_template("giocatori.html", entries=entries)
+    return render_template("allenatori.html", entries=entries)
+
+
+@app.route("/partite")
+def partite():
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("""
+        SELECT p.id, p.data, 
+               g.id as giocatore_id, g.nome, g.cognome, gp.ha_segnato
+        FROM PARTITA p
+        LEFT JOIN GIOCATORE_PARTITA gp ON p.id = gp.partita_id
+        LEFT JOIN GIOCATORE g ON gp.giocatore_id = g.id
+    """)
+    rows = cursor.fetchall()
+    cursor.close()
+
+    partite_dict = {}
+    for row in rows:
+        partita_id = row['id']
+        if partita_id not in partite_dict:
+            partite_dict[partita_id] = {
+                'id': partita_id,
+                'data': row['data'],
+                'giocatori': []
+            }
+        partite_dict[partita_id]['giocatori'].append({
+            'id': row['giocatore_id'],
+            'nome': row['nome'],
+            'cognome': row['cognome'],
+            'ha_segnato': row['ha_segnato']
+        })
+
+    entries = list(partite_dict.values())
+    return render_template("partite.html", entries=entries)
 
 if __name__ == "__main__":
     # check if the file database exists
